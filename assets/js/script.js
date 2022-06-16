@@ -210,4 +210,40 @@ function getFiveDayForecast(daily) {
     forecastWeatherEl.removeClass("hide");
     return;
   }
+
+  /*Creates elements dynamically to display the data and apply style to it*/
+function createForecastSection(date, temperature, wind, humidity, weatherIcon) {
+    let forecastInnerDiv = $("<div>");
+  
+    let dateEl = $("<h3>");
+    dateEl.html(date);
+  
+    let iconEl = $("<img>");
+    iconEl.attr("src", weatherIcon);
+  
+    let dateIconDiv = $("<div>");
+    dateIconDiv.append(dateEl);
+    dateIconDiv.append(iconEl);
+    dateIconDiv.attr("style", "display:flex;padding-right:0.1rem");
+  
+    let tempPara = $("<p>");
+    tempPara.html("Temp: " + temperature);
+  
+    let windPara = $("<p>");
+    windPara.html("Wind: " + wind);
+  
+    let humidityPara = $("<p>");
+    humidityPara.html("Humidity: " + humidity);
+  
+    forecastInnerDiv.append(dateIconDiv);
+    forecastInnerDiv.append(tempPara);
+    forecastInnerDiv.append(windPara);
+    forecastInnerDiv.append(humidityPara);
+    forecastInnerDiv.attr(
+      "style",
+      "display:flex;flex-direction:column;background-color:#9F496E;padding:3rem 1.5rem;border-radius:10px"
+    );
+  
+    forecastWeatherEl.append(forecastInnerDiv);
+  }
   
