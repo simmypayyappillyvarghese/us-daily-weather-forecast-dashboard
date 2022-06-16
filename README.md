@@ -33,6 +33,8 @@ GIVEN a weather dashboard with form inputs
 
 ## Links
 
+*  Repo Link : https://github.com/simmypayyappillyvarghese/us-daily-weather-forecast-dashboard
+*  Live Link : https://simmypayyappillyvarghese.github.io/us-daily-weather-forecast-dashboard/
 
 ## Technologies Used
 
