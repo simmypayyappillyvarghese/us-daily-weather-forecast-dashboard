@@ -187,3 +187,27 @@ function getcurrentWeatherData(lat, lng, city) {
       })
       .catch((e) => console.log(e));
   }
+
+
+function getFiveDayForecast(daily) {
+    forecastWeatherEl.html("");
+    for (index = 0; index < 5; index++) {
+      let foreCastWeather = daily[index];
+  
+      let date = formatDate(foreCastWeather.dt);
+      let temperature = foreCastWeather.temp.day;
+      let wind = foreCastWeather.wind_speed;
+      let humidity = foreCastWeather.humidity;
+      let weathrerIcon =
+        "http://openweathermap.org/img/wn/" +
+        foreCastWeather.weather[0].icon +
+        ".png";
+  
+      //Creates elements to display the forecast weather with the fetched data
+      createForecastSection(date, temperature, wind, humidity, weathrerIcon);
+    }
+  
+    forecastWeatherEl.removeClass("hide");
+    return;
+  }
+  
