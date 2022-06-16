@@ -1,3 +1,17 @@
+/*
+This is US specific weather forecast dashboard as country code is not being usedin API call and even if the same city exist in
+multiple states ,only one from the search is picked
+
+User is presented with a search box and button to search for city name and additional option to clear search history.
+When user enter the city name and click Search,verifies if the city name is not empty using isValid()
+Verifies if city is not already part of local storage and only if not creates a new button with city name and add to search history
+Also displays current and 5 day weather forecast.
+As per documentation,used the updated One call API and geocoding API ,first to fetch coordinates with city name
+and then to search with coordinates for weather details.
+
+When user clicks on buttons on search history ,only one API call happens with coordinates to get updated weather data
+When user clicks on Clear search histor,local storage is cleared and UI is updated
+*/
 
 //Global Variables
 
@@ -200,7 +214,7 @@ function getcurrentWeatherData(lat, lng, city) {
   
         tempEL.html("Temp: " + temperature +" °F");
         humidityEL.html("Humidity: " + humidity+" %");
-        windEL.html("Wind: " + windspeed+" MPH");
+        windEL.html("Wind: " + windspeed+" mph");
   
         
         let weatherArray = data.daily.slice(0, 5);
@@ -251,7 +265,7 @@ function createForecastSection(date, temperature, wind, humidity, weatherIcon) {
     tempPara.html("Temp: " + temperature+" °F");
   
     let windPara = $("<p>");
-    windPara.html("Wind: " + wind+" MPH");
+    windPara.html("Wind: " + wind+" mph");
   
     let humidityPara = $("<p>");
     humidityPara.html("Humidity: " + humidity+" %");
