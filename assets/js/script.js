@@ -133,7 +133,7 @@ function getCoordinatesByCityName(city) {
         //Save the coordinates and city name to the local storage
         let storageCopy = JSON.parse(localStorage.getItem("city-coords"));
   
-        console.log(storageCopy);
+        
         let initialObj = !storageCopy ? {} : storageCopy;
         initialObj[city] = [latitude, longitude];
         localStorage.setItem("city-coords", JSON.stringify(initialObj));
