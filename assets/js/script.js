@@ -80,6 +80,27 @@ function isValid(city) {
   return true;
 }
 
+/*Function to get data from storage and make API call with the stored coordinates*/
+
+function getFromStorage(event) {
+    //This will remove the sections and display weather section
+    //when users refreshes page and then click on the city buttons
+    currentWeatherEl.removeClass("hide");
+    forecastWeatherEl.removeClass("hide");
+  
+    if (event.target.type === "submit") {
+      let cityName = event.target.innerHTML;
+  
+      let lat = JSON.parse(localStorage.getItem("city-coords"))[cityName][0];
+      let lng = JSON.parse(localStorage.getItem("city-coords"))[cityName][1];
+  
+      getcurrentWeatherData(lat, lng, cityName);
+    }
+  
+    return;
+  }
+  
+
 
 /*This will make an API call using city name and country code and return lat,lng coordinates of that city */
 
@@ -268,3 +289,13 @@ function updateDisplay() {
       searchHistoryEl.empty();
     }
   }
+
+//Function is invoked every time the page loads and update html page
+updateDisplay();
+
+/*Added a functionality to clear the Storage and update the display*/
+
+function clearHistory() {
+  localStorage.clear();
+  updateDisplay();
+}
