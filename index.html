@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Outlook Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Joan&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>WEATHER DASHBOARD</h1>
+    </header>
+    <main>
+        <section id="form-section">
+            <form>
+                <label for="city-search-input">Search for a City:</label>
+                <input type="text" id="city-search-input" name="city-search" placeholder="" value="">
+                <button class="search-button">Search</button>
+                <p class="error-para"></p>
+
+            </form>
+            <section class="search-history">
+                
+
+            </section>
+            <section class="clear-section">
+                <button>Clear Search History</button>
+            </section>
+        </section>
+        <section id="weather-info-section" class="hide">
+            <section id="current-weather-section">
+                 <div id="city-icon-div"><h2></h2><h2 class="date"></h2><img class="icon"></div>
+                 <div id="current-weather-info">
+                    <p class="temp"></p>
+                    <p class="wind"></p>
+                    <p class="humidity"></p>
+                    <p class="uvi"></p>
+                 </div>  
+            </section>
+            <section id="forecast-section">
+            </section>
+        </section>
+    </main>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+ <script src="./assets/js/script.js"></script>   
+</body>
+</html>
