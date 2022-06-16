@@ -81,3 +81,32 @@ function isValid(city) {
 }
 
 
+/*This will make an API call using city name and country code and return lat,lng coordinates of that city */
+
+function getCoordinatesByCityName(city) {
+    let request =
+      "http://api.openweathermap.org/geo/1.0/direct?q=" +
+      city +
+      ",us&limit=1&appid=bbdf0ceeaac95b54bc84b84990bee209";
+  
+    fetch(request)
+      .then((response) => response.json())
+      .then((data) => {
+        let latitude = data[0].lat;
+        let longitude = data[0].lon;
+  
+        //Save the coordinates and city name to the local storage
+        let storageCopy = JSON.parse(localStorage.getItem("city-coords"));
+  
+        console.log(storageCopy);
+        let initialObj = !storageCopy ? {} : storageCopy;
+        initialObj[city] = [latitude, longitude];
+        localStorage.setItem("city-coords", JSON.stringify(initialObj));
+  
+        getcurrentWeatherData(latitude, longitude, city);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+  
