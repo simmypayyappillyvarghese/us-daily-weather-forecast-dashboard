@@ -120,7 +120,7 @@ function getFromStorage(event) {
 
 function getCoordinatesByCityName(city) {
     let request =
-      "http://api.openweathermap.org/geo/1.0/direct?q=" +
+      "https://api.openweathermap.org/geo/1.0/direct?q=" +
       city +
       ",us&limit=1&appid=bbdf0ceeaac95b54bc84b84990bee209";
   
@@ -133,7 +133,7 @@ function getCoordinatesByCityName(city) {
         //Save the coordinates and city name to the local storage
         let storageCopy = JSON.parse(localStorage.getItem("city-coords"));
   
-        console.log(storageCopy);
+        
         let initialObj = !storageCopy ? {} : storageCopy;
         initialObj[city] = [latitude, longitude];
         localStorage.setItem("city-coords", JSON.stringify(initialObj));
@@ -209,7 +209,7 @@ function getcurrentWeatherData(lat, lng, city) {
         dateEl.html(formattedDate);
   
         //URL for the icon from Open Weather API
-        let iconUrl = "http://openweathermap.org/img/wn/" + icon + ".png";
+        let iconUrl = "https://openweathermap.org/img/wn/" + icon + ".png";
         iconEl.attr("src", iconUrl);
   
         tempEL.html("Temp: " + temperature +" °F");
@@ -234,7 +234,7 @@ function getFiveDayForecast(daily) {
       let wind = foreCastWeather.wind_speed;
       let humidity = foreCastWeather.humidity;
       let weathrerIcon =
-        "http://openweathermap.org/img/wn/" +
+        "https://openweathermap.org/img/wn/" +
         foreCastWeather.weather[0].icon +
         ".png";
   
