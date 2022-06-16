@@ -109,4 +109,81 @@ function getCoordinatesByCityName(city) {
         console.log(e);
       });
   }
+
+  /*Function will accept lat and long values and make an Open Weather's One Call API and return weather data */
+
+function getcurrentWeatherData(lat, lng, city) {
+    //API URL : https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
   
+    let request =
+      "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+      lat +
+      "&lon=" +
+      lng +
+      "&exclude=hourly,minutely,alerts&appid=bbdf0ceeaac95b54bc84b84990bee209";
+    let uviIndexColors = [
+      { 0: "#336600" },
+      { 1: "#336600" },
+      { 2: "#336600" },
+      { 3: "#ffff00" },
+      { 4: "#ffff00" },
+      { 5: "#ffff00" },
+      { 6: "#ffa500" },
+      { 7: "#ffa500" },
+      { 8: "#ff0000" },
+      { 9: "#ff0000" },
+      { 10: "#ff0000" },
+      { 11: "#9900ff" },
+    ];
+  
+    fetch(request)
+      .then((response) => response.json())
+      .then((data) => {
+        let formattedDate = formatDate(data.current.dt);
+        let icon = data.current.weather[0].icon;
+        let temperature = data.current.temp;
+        let humidity = data.current.humidity;
+        let windspeed = data.current.wind_speed;
+        let uvi = data.current.uvi;
+  
+        let uviEl = $(".uvi").html("UV Index: ");
+  
+        //Round the UVI Index value to an integer
+        uvi = Math.floor(uvi);
+  
+        //For any value greater than 11,color code will be same as that of UVI:11
+        if (uvi >= 12) {
+          uvi = 11;
+        }
+  
+        //Checks if the uvi values is in the color code array,if then create a span element with styling and set its value as uvi Index value
+  
+        uviIndexColors.forEach((uviColorObj) => {
+          if (uvi in uviColorObj) {
+            let uviSpan = $("<span>&nbsp;" + uvi + "&nbsp;</span>").attr(
+              "style",
+              "color:#000;padding:0.2rem;background-color:" + uviColorObj[uvi]
+            );
+  
+            uviEL.append(uviSpan);
+            return;
+          }
+        });
+  
+        cityNameEl.html(city);
+        dateEl.html(formattedDate);
+  
+        //URL for the icon from Open Weather API
+        let iconUrl = "http://openweathermap.org/img/wn/" + icon + ".png";
+        iconEl.attr("src", iconUrl);
+  
+        tempEL.html("Temp: " + temperature);
+        humidityEL.html("Humidity: " + humidity);
+        windEL.html("Wind: " + windspeed);
+  
+        
+        let weatherArray = data.daily.slice(0, 5);
+        getFiveDayForecast(weatherArray);
+      })
+      .catch((e) => console.log(e));
+  }
