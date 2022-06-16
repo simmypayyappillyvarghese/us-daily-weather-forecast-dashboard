@@ -198,9 +198,9 @@ function getcurrentWeatherData(lat, lng, city) {
         let iconUrl = "http://openweathermap.org/img/wn/" + icon + ".png";
         iconEl.attr("src", iconUrl);
   
-        tempEL.html("Temp: " + temperature);
-        humidityEL.html("Humidity: " + humidity);
-        windEL.html("Wind: " + windspeed);
+        tempEL.html("Temp: " + temperature +" °F");
+        humidityEL.html("Humidity: " + humidity+" %");
+        windEL.html("Wind: " + windspeed+" MPH");
   
         
         let weatherArray = data.daily.slice(0, 5);
@@ -248,13 +248,13 @@ function createForecastSection(date, temperature, wind, humidity, weatherIcon) {
     dateIconDiv.attr("style", "display:flex;padding-right:0.1rem");
   
     let tempPara = $("<p>");
-    tempPara.html("Temp: " + temperature);
+    tempPara.html("Temp: " + temperature+" °F");
   
     let windPara = $("<p>");
-    windPara.html("Wind: " + wind);
+    windPara.html("Wind: " + wind+" MPH");
   
     let humidityPara = $("<p>");
-    humidityPara.html("Humidity: " + humidity);
+    humidityPara.html("Humidity: " + humidity+" %");
   
     forecastInnerDiv.append(dateIconDiv);
     forecastInnerDiv.append(tempPara);
