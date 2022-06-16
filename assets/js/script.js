@@ -246,4 +246,25 @@ function createForecastSection(date, temperature, wind, humidity, weatherIcon) {
   
     forecastWeatherEl.append(forecastInnerDiv);
   }
-  
+
+  //Using moment API to format the date
+function formatDate(date) {
+    return moment.unix(date).format("M/DD/YYYY");
+  }
+  //Function will fetch data from local storage,and create buttons for each of the elements in the
+//array and create button for it and append to the csearch history container.
+
+function updateDisplay() {
+    let storage = JSON.parse(localStorage.getItem("city-coords"));
+    if (storage) {
+      let keys = Object.keys(storage);
+      for (let index = 0; index < keys.length; index++) {
+        let buttonEl = $("<button>");
+        buttonEl.addClass("cityButtons");
+        buttonEl.html(keys[index]);
+        searchHistoryEl.append(buttonEl);
+      }
+    } else {
+      searchHistoryEl.empty();
+    }
+  }
